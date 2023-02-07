@@ -68,6 +68,33 @@
         const includeDinner = document.getElementById("dinner").checked;
   
         // Code to generate the schedule based on the input and output it to the page.
+        let schedule = "";
+let time = startTime;
+for (let i = 0; i < subjects.length; i++) {
+  schedule += time.getHours() + ":" + (time.getMinutes() < 10 ? "0" : "") + time.getMinutes() + " " + (time.getHours() < 12 ? "AM" : "PM") + " - ";
+  time.setMinutes(time.getMinutes() + 30);
+  schedule += time.getHours() + ":" + (time.getMinutes() < 10 ? "0" : "") + time.getMinutes() + " " + (time.getHours() < 12 ? "AM" : "PM") + ": " + subjects[i] + "\n";
+  if (breaks.length > i) {
+    time.setMinutes(time.getMinutes() + parseInt(breaks[i]));
+    schedule += time.getHours() + ":" + (time.getMinutes() < 10 ? "0" : "") + time.getMinutes() + " " + (time.getHours() < 12 ? "AM" : "PM") + " - ";
+    time.setMinutes(time.getMinutes() + 30);
+    schedule += time.getHours() + ":" + (time.getMinutes() < 10 ? "0" : "") + time.getMinutes() + " " + (time.getHours() < 12 ? "AM" : "PM") + ": Break\n";
+  }
+  if (includeLunch && time.getHours() === 12) {
+    time.setMinutes(time.getMinutes() + 30);
+    schedule += time.getHours() + ":" + (time.getMinutes() < 10 ? "0" : "") + time.getMinutes() + " " + (time.getHours() < 12 ? "AM" : "PM") + " - ";
+    time.setHours(time.getHours() + 1);
+    schedule += time.getHours() + ":" + (time.getMinutes() < 10 ? "0" : "") + time.getMinutes() + " " + (time.getHours() < 12 ? "AM" : "PM") + ": Lunch\n";
+  }
+  if (includeDinner && time.getHours() === 17) {
+    time.setMinutes(time.getMinutes() + 30);
+    schedule += time.getHours() + ":" + (time.getMinutes() < 10 ? "0" : "") + time.getMinutes() + " " + (time.getHours() < 12 ? "AM" : "PM") + " - ";
+    time.setHours(time.getHours() + 1);
+    schedule += time.getHours() + ":" + (time.getMinutes() < 10 ? "0" : "") + time.getMinutes() + " " + (time.getHours() < 12 ? "AM" : "PM") + ": Dinner\n";
+  }
+}
+console.log(schedule);
+
       }
     </script>
   </body>
