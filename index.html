@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+  
+      div {
+        display: flex;
+        justify-content: space-between;
+        margin: 10px 0;
+        width: 80%;
+      }
+  
+      label {
+        width: 40%;
+        text-align: right;
+      }
+  
+      input[type="text"], input[type="time"] {
+        width: 50%;
+        padding: 10px;
+      }
+  
+      button {
+        margin-top: 20px;
+        padding: 10px 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <form>
+      <div>
+        <label for="subjects">Subjects:</label>
+        <input type="text" id="subjects" name="subjects">
+      </div>
+      <div>
+        <label for="breaks">Breaks:</label>
+        <input type="text" id="breaks" name="breaks">
+      </div>
+      <div>
+        <label for="start">Start Time:</label>
+        <input type="time" id="start" name="start">
+        <label for="stop">Stop Time:</label>
+        <input type="time" id="stop" name="stop">
+      </div>
+      <div>
+        <input type="checkbox" id="lunch" name="lunch">
+        <label for="lunch">Include Lunch Break</label>
+        <input type="checkbox" id="dinner" name="dinner">
+        <label for="dinner">Include Dinner Break</label>
+      </div>
+      <button type="button" id="generate">Generate</button>
+    </form>
+    <script>
+      const generateBtn = document.getElementById("generate");
+      generateBtn.addEventListener("click", generateSchedule);
+  
+      function generateSchedule() {
+        const subjects = document.getElementById("subjects").value.split(",");
+        const breaks = document.getElementById("breaks").value.split(",");
+        const startTime = new Date("January 1, 2000 " + document.getElementById("start").value);
+        const stopTime = new Date("January 1, 2000 " + document.getElementById("stop").value);
+        const includeLunch = document.getElementById("lunch").checked;
+        const includeDinner = document.getElementById("dinner").checked;
+  
+        // Code to generate the schedule based on the input and output it to the page.
+      }
+    </script>
+  </body>
+</html>
